@@ -13,14 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v1
+
     - name: Clone web
       run: git clone https://github.com/standardnotes/web.git
 
     - name: Applying patch
-      run: cp production.patch && cd web && git apply ./production.patch
+      run: cp production.patch ./web && cd web && git apply ./production.patch
 
     - name: Build the Docker image
-      run: docker build -t chrisnharvey/standardnotes-web:latest .
+      run: docker build -t chrisnharvey/standardnotes-web:latest ./web
 
     - uses: azure/docker-login@v1
       with:
