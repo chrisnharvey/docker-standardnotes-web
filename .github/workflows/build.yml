@@ -22,7 +22,7 @@ jobs:
       run: cp production.patch ./web && cd web && git apply ./production.patch
 
     - name: Build the Docker image
-      run: docker build -t chrisnharvey/standardnotes-web:latest .
+      run: docker build -t chrisnharvey/standardnotes-web:latest ./web
 
     - uses: azure/docker-login@v1
       with:
